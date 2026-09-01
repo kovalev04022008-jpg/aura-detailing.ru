@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA DETAILING — Профессиональный детейлинг в Симферополе</title>
+    <link href="aura-detailing.ru" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --black: #0a0a0a;
+            --dark: #111111;
+            --gray-dark: #1a1a1a;
+            --gray: #333333;
+            --gray-light: #888888;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .logo-bar {
+            width: 100%;
+            background: var(--black);
+            border-bottom: 1px solid var(--gray);
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 100;
+        }
+        .logo-bar h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+        .logo-bar .tagline {
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gray-light);
+            margin-top: 8px;
+        }
+        .logo-bar::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 1px;
+            background: var(--white);
+            margin: 15px auto 0;
+        }
+        .navbar {
+            background: var(--dark);
+            border-bottom: 1px solid var(--gray);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+        .navbar ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .navbar a {
+            display: block;
+            padding: 16px 28px;
+            color: var(--gray-light);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .navbar a:hover, .navbar a.active {
+            color: var(--white);
+            border-bottom-color: var(--white);
+            background: var(--gray-dark);
+        }
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            min-height: calc(100vh - 180px);
+        }
+        .page-section.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+                        url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1920&q=80&sat=-100') center/cover;
+            height: 65vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero-content h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        .hero-content p {
+            font-size: 1rem;
+            color: var(--gray-light);
+            letter-spacing: 2px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 14px 45px;
+            background: var(--white);
+            color: var(--black);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid var(--white);
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: transparent;
+            color: var(--white);
+        }
+        .section-header {
+            text-align: center;
+            padding: 60px 20px 35px;
+        }
+        .section-header h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .section-header .line {
+            width: 50px;
+            height: 1px;
+            background: var(--white);
+            margin: 0 auto 12px;
+        }
+        .section-header p {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 0 20px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .service-card {
+            background: var(--dark);
+            border: 1px solid var(--gray);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--white);
+            box-shadow: 0 15px 35px rgba(255,255,255,0.05);
+        }
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.1);
+            transition: filter 0.4s ease;
+        }
+        .service-card:hover img {
+            filter: grayscale(0%) contrast(1.1);
+        }
+        .service-card .info {
+            padding: 22px;
+        }
+        .service-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+        .service-card p {
+            color: var(--gray-light);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+        .service-card .price-tag {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 5px 15px;
+            border: 1px solid var(--gray);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            color: var(--white);
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-content {
+            background: var(--dark);
+            border: 1px solid var(--gray);
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 2rem;
+            color: var(--white);
+            cursor: pointer;
+            z-index: 10;
+            background: none;
+            border: none;
+            width: 40px; height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-close:hover { color: var(--gray-light); }
+        .modal-content img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            filter: grayscale(30%);
+        }
+        .modal-body {
+            padding: 30px;
+        }
+        .modal-body h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        .modal-body p {
+            color: var(--gray-light);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        .modal-body ul {
+            color: var(--gray-light);
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        .modal-body li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        .modal-body .modal-price {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            color: var(--white);
+            padding-top: 15px;
+            border-top: 1px solid var(--gray);
+            margin-top: 15px;
+        }
+        .what-is-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+        .what-is-content {
+            background: var(--dark);
+            border: 1px solid var(--gray);
+            padding: 40px;
+        }
+        .what-is-content h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+        .what-is-content p {
+            color: var(--gray-light);
+            line-height: 1.9;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        .what-is-content ul {
+            color: var(--gray-light);
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+        .what-is-content li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        .map-section {
+            padding: 0 20px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .map-container {
+            border: 1px solid var(--gray);
+            height: 400px;
+            width: 100%;
+            background: var(--dark);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(100%) invert(92%) contrast(83%);
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+        .about-image {
+            position: relative;
+        }
+        .about-image img {
+            width: 100%;
+            filter: grayscale(100%) contrast(1.1);
+            border: 1px solid var(--gray);
+            display: block;
+        }
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 15px; left: 15px; right: -15px; bottom: -15px;
+            border: 1px solid var(--gray);
+            z-index: -1;
+        }
+        .about-image-color img {
+            width: 100%;
+            border: 1px solid var(--gray);
+            display: block;
+        }
+        .about-image-color {
+            position: relative;
+        }
+        .about-image-color::before {
+            content: '';
+            position: absolute;
+            top: 15px; left: 15px; right: -15px; bottom: -15px;
+            border: 1px solid var(--gray);
+            z-index: -1;
+        }
+        .about-text h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+        .about-text p {
+            color: var(--gray-light);
+            margin-bottom: 15px;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        .about-text ul {
+            color: var(--gray-light);
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        .about-text li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        .about-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+        .feature-card {
+            background: var(--dark);
+            border: 1px solid var(--gray);
+            padding: 35px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover { border-color: var(--white); }
+        .feature-icon {
+            width: 45px; height: 45px;
+            margin: 0 auto 18px;
+            stroke: var(--white);
+            fill: none;
+            stroke-width: 1.5;
+        }
+        .feature-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+        .feature-card p {
+            color: var(--gray-light);
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+        .price-section { background: var(--dark); padding: 0 20px 60px; }
+        .price-table {
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid var(--gray);
+        }
+        .price-category {
+            background: var(--black);
+            padding: 14px 25px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--gray);
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 25px;
+            border-bottom: 1px solid var(--gray);
+            transition: background 0.3s ease;
+        }
+        .price-row:last-child { border-bottom: none; }
+        .price-row:hover { background: var(--gray-dark); }
+        .price-row .service-name { font-size: 0.95rem; letter-spacing: 0.5px; }
+        .price-row .service-price {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            white-space: nowrap;
+            margin-left: 15px;
+        }
+        .price-row .service-desc {
+            color: var(--gray-light);
+            font-size: 0.75rem;
+            margin-top: 3px;
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+        .review-card {
+            background: var(--dark);
+            border: 1px solid var(--gray);
+            padding: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .review-card:hover { border-color: var(--white); }
+        .review-card::before {
+            content: '"';
+            font-family: 'Oswald', sans-serif;
+            font-size: 4rem;
+            position: absolute;
+            top: 5px; left: 18px;
+            color: var(--gray);
+            line-height: 1;
+        }
+        .review-card .stars {
+            color: var(--white);
+            letter-spacing: 3px;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .review-card p {
+            color: var(--gray-light);
+            line-height: 1.7;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
+            font-size: 0.9rem;
+        }
+        .review-card .author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .review-card .author-avatar {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            background: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            border: 1px solid var(--gray-light);
+        }
+        .review-card .author-name { font-weight: 500; letter-spacing: 1px; font-size: 0.85rem; }
+        .review-card .author-car { color: var(--gray-light); font-size: 0.75rem; }
+        footer {
+            background: var(--dark);
+            border-top: 1px solid var(--gray);
+            padding: 40px 20px 25px;
+            text-align: center;
+        }
+        .footer-content { max-width: 800px; margin: 0 auto; }
+        .footer-logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 6px;
+            margin-bottom: 18px;
+        }
+        .footer-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        .footer-info div {
+            color: var(--gray-light);
+            font-size: 0.85rem;
+        }
+        .footer-info strong {
+            color: var(--white);
+            display: block;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.7rem;
+        }
+        .footer-info a {
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-info a:hover { color: var(--white); }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+        .social-links a {
+            width: 45px; height: 45px;
+            border: 1px solid var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--white);
+        }
+        .social-links a:hover {
+            border-color: var(--white);
+            background: var(--white);
+            color: var(--black);
+        }
+        .social-links svg {
+            width: 20px; height: 20px;
+            fill: currentColor;
+        }
+        .copyright {
+            color: var(--gray);
+            font-size: 0.75rem;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray);
+        }
+        @media (max-width: 768px) {
+            .hero-content h2 { font-size: 2rem; letter-spacing: 4px; }
+            .navbar a { padding: 14px 18px; font-size: 0.7rem; letter-spacing: 2px; }
+            .about-content { grid-template-columns: 1fr; }
+            .about-gallery { grid-template-columns: 1fr; }
+            .price-row { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .modal-content img { height: 200px; }
+            .map-container { height: 300px; }
+            .what-is-content { padding: 25px; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <!-- ЛОГО -->
+    <div class="logo-bar">
+        <h1>AURA DETAILING</h1>
+        <div class="tagline">Премиальный детейлинг в Симферополе</div>
+    </div>
+
+    <!-- НАВИГАЦИЯ -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#" class="nav-link active" data-page="home">Главная</a></li>
+            <li><a href="#" class="nav-link" data-page="about">О нас</a></li>
+            <li><a href="#" class="nav-link" data-page="price">Прайс-лист</a></li>
+            <li><a href="#" class="nav-link" data-page="reviews">Отзывы</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===== ГЛАВНАЯ ===== -->
+    <section id="home" class="page-section active">
+        <div class="hero">
+            <div class="hero-content">
+                <h2>AURA DETAILING</h2>
+                <p>Профессиональный детейлинг премиум-класса в Симферополе. Возвращаем автомобилям идеальное состояние.</p>
+                <a href="tel:+79785639657" class="btn">Позвонить</a>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Наши услуги</h2>
+            <div class="line"></div>
+            <p>Нажмите на услугу, чтобы узнать подробности</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card" onclick="openModal('tonirovka')">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80&sat=-100" alt="Тонировка">
+                <div class="info">
+                    <h3>Тонировка</h3>
+                    <p>Любой процент, атермальная и хамелеон плёнка.</p>
+                    <span class="price-tag">от 7.000 ₽</span>
+                </div>
+            </div>
+            <div class="service-card" onclick="openModal('okleyka')">
+                <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&q=80&sat=-100" alt="Оклейка">
+                <div class="info">
+                    <h3>Оклейка защитной плёнкой</h3>
+                    <p>Защита фар, зон риска, полная оклейка кузова.</p>
+                    <span class="price-tag">от 5.000 ₽</span>
+                </div>
+            </div>
+            <div class="service-card" onclick="openModal('moyka')">
+                <img src="https://images.unsplash.com/photo-1552930294-6b595f4c2974?w=600&q=80&sat=-100" alt="Мойка">
+                <div class="info">
+                    <h3>Детейлинг-мойка</h3>
+                    <p>2-х и 3-х фазная мойка, уборка салона.</p>
+                    <span class="price-tag">от 1.000 ₽</span>
+                </div>
+            </div>
+            <div class="service-card" onclick="openModal('zashita')">
+                <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=80&sat=-100" alt="Защитные покрытия">
+                <div class="info">
+                    <h3>Защитные покрытия</h3>
+                    <p>Антидождь, воск, керамическое покрытие.</p>
+                    <span class="price-tag">от 3.000 ₽</span>
+                </div>
+            </div>
+            <div class="service-card" onclick="openModal('himchistka')">
+                <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=600&q=80&sat=-100" alt="Химчистка">
+                <div class="info">
+                    <h3>Химчистка салона</h3>
+                    <p>Экспресс, частичный и полный разбор.</p>
+                    <span class="price-tag">от 5.000 ₽</span>
+                </div>
+            </div>
+            <div class="service-card" onclick="openModal('remont')">
+                <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=600&q=80&sat=-100" alt="Ремонт">
+                <div class="info">
+                    <h3>Ремонт ЛКП</h3>
+                    <p>Сколы, царапины, полировка фар, битум.</p>
+                    <span class="price-tag">от 100 ₽</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Что такое детейлинг</h2>
+            <div class="line"></div>
+            <p>Почему обычной мойки недостаточно</p>
+        </div>
+
+        <div class="what-is-section">
+            <div class="what-is-content">
+                <h3>Детейлинг — это искусство идеального ухода</h3>
+                <p>Детейлинг (от английского <em>detailing</em> — «проработка деталей») — это комплексная процедура глубокой очистки, восстановления и защиты автомобиля на микроуровне. В отличие от обычной мойки, которая удаляет только видимую грязь, детейлинг работает с каждым миллиметром поверхности.</p>
+                <p>Процесс включает устранение микроцарапин, восстановление блеска лакокрасочного покрытия, глубокую очистку салона от аллергенов и бактерий, защиту кузова от УФ-лучей, химических реагентов и мелких повреждений. Это не просто «уборка» — это полноценный уход, возвращающий автомобилю заводское состояние.</p>
+                <p>В AURA DETAILING мы работаем со всеми элементами автомобиля:</p>
+                <ul>
+                    <li><strong>Кузов</strong> — многофазная мойка, полировка, защитные покрытия, оклейка плёнкой</li>
+                    <li><strong>Салон</strong> — химчистка любой сложности с частичным или полным разбором</li>
+                    <li><strong>Стёкла</strong> — тонировка любой плотности, атермальная и хамелеон плёнка</li>
+                    <li><strong>Фары</strong> — полировка, восстановление прозрачности, оклейка защитной плёнкой</li>
+                    <li><strong>ЛКП</strong> — локальный ремонт сколов и царапин, удаление битума и металлических вкраплений</li>
+                </ul>
+                <p>Результат детейлинга сохраняется месяцами и даже годами, в зависимости от выбранной услуги. Ваш автомобиль не только сияет чистотой, но и надёжно защищён от внешних воздействий.</p>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Как нас найти</h2>
+            <div class="line"></div>
+            <p>Мы находимся в Симферополе</p>
+        </div>
+        <div class="map-section">
+            <div class="map-container">
+                <iframe src="https://yandex.ru/map-widget/v1/?ll=34.100000%2C44.950000&z=13&mode=search&text=Симферополь" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+    <!-- ===== О НАС ===== -->
+    <section id="about" class="page-section">
+        <div class="section-header">
+            <h2>О нас</h2>
+            <div class="line"></div>
+            <p>AURA DETAILING — профессиональная студия в Симферополе</p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-image">
+                <img src="/images/IMG_5505.jpg" alt="Студия AURA DETAILING">
+            </div>
+            <div class="about-text">
+                <h3>Кто мы</h3>
+                <p>AURA DETAILING — это команда профессионалов, для которых автомобиль — не просто средство передвижения, а объект, достойный идеального ухода. Мы находимся в Симферополе и предоставляем полный комплекс услуг по детейлингу любой сложности.</p>
+                <p>Мы работаем только с проверенными материалами премиум-класса и современным оборудованием. Каждый автомобиль проходит тщательную диагностику состояния ЛКП и салона перед началом работ, чтобы подобрать оптимальную программу ухода.</p>
+                <p>Наша цель — не просто навести блеск, а комплексно восстановить и защитить ваш автомобиль, продлив срок его безупречной службы и сохранив рыночную стоимость.</p>
+                <h3 style="margin-top:25px;">Наши услуги</h3>
+                <ul>
+                    <li><strong>Тонировка</strong> — плёнкой любой плотности, включая атермальную и хамелеон</li>
+                    <li><strong>Оклейка</strong> — защитная полиуретановая плёнка для фар, зон риска и полного кузова</li>
+                    <li><strong>Мойка</strong> — многофазная детейлинг-мойка с уборкой салона и подкапотного пространства</li>
+                    <li><strong>Защитные покрытия</strong> — воск, керамика и антидождь для кузова и стёкол</li>
+                    <li><strong>Химчистка</strong> — глубокая очистка салона с частичным или полным разбором</li>
+                    <li><strong>Ремонт ЛКП</strong> — устранение сколов, царапин, полировка фар, удаление битума</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-header" style="padding-top:20px;">
+            <h2>Наше оборудование</h2>
+            <div class="line"></div>
+            <p>Мы работаем на профессиональном оборудовании мирового уровня</p>
+        </div>
+
+        <div class="about-gallery">
+            <div class="about-image-color">
+                <img src="/images/IMG_5498 2.jpg" alt="Оборудование 1">
+            </div>
+            <div class="about-image-color">
+                <img src="/images/IMG_5499.jpg" alt="Оборудование 2">
+            </div>
+        </div>
+
+        <div class="section-header" style="padding-top:20px;">
+            <h2>Почему выбирают нас</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <svg class="feature-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <h3>Гарантия качества</h3>
+                <p>На все виды работ предоставляется официальная гарантия. Мы уверены в результате.</p>
+            </div>
+            <div class="feature-card">
+                <svg class="feature-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                <h3>Оперативность</h3>
+                <p>Чёткое соблюдение сроков. Мы ценим ваше время и завершаем работу вовремя.</p>
+            </div>
+            <div class="feature-card">
+                <svg class="feature-icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                <h3>Профессиональная химия</h3>
+                <p>Работаем с сертифицированными средствами Koch Chemie, Gtechniq и другими премиум-брендами.</p>
+            </div>
+            <div class="feature-card">
+                <svg class="feature-icon" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <h3>Внимание к деталям</h3>
+                <p>Проверяем каждый миллиметр поверхности. Ничто не ускользнёт от наших мастеров.</p>
+            </div>
+            <div class="feature-card">
+                <svg class="feature-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                <h3>Современное оборудование</h3>
+                <p>Профессиональные полировальные машины, лампы, микроскопы и измерители толщины ЛКП.</p>
+            </div>
+            <div class="feature-card">
+                <svg class="feature-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <h3>Индивидуальный подход</h3>
+                <p>Каждый автомобиль уникален. Подбираем решение под ваши задачи и бюджет.</p>
+            </div>
+        </div>
+    </section>
+    <!-- ===== ПРАЙС-ЛИСТ ===== -->
+    <section id="price" class="page-section">
+        <div class="section-header">
+            <h2>Прайс-лист</h2>
+            <div class="line"></div>
+            <p>Актуальные цены на все виды услуг AURA DETAILING</p>
+        </div>
+
+        <div class="price-section">
+            <div class="price-table">
+                <div class="price-category">Тонировка</div>
+                <div class="price-row"><div><div class="service-name">Тонировка любой процент</div></div><div class="service-price">7.000 ₽ / 8.000 ₽</div></div>
+                <div class="price-row"><div><div class="service-name">Атермальная тонировка</div></div><div class="service-price">9.000 ₽ / 10.000 ₽</div></div>
+                <div class="price-row"><div><div class="service-name">Тонировка хамелеон</div></div><div class="service-price">12.000 ₽ / 13.000 ₽</div></div>
+
+                <div class="price-category">Оклейка</div>
+                <div class="price-row"><div><div class="service-name">Оклейка фар</div></div><div class="service-price">от 5.000 ₽</div></div>
+                <div class="price-row"><div><div class="service-name">Оклейка зон риска</div></div><div class="service-price">50.000 — 70.000 ₽</div></div>
+                <div class="price-row"><div><div class="service-name">Оклейка кузова (глянец)</div></div><div class="service-price">175.000 — 190.000 ₽</div></div>
+                <div class="price-row"><div><div class="service-name">Оклейка кузова (мат/цвет)</div></div><div class="service-price">190.000 — 210.000 ₽</div></div>
+
+                <div class="price-category">Мойка</div>
+                <div class="price-row"><div><div class="service-name">2-х фазная мойка</div></div><div class="service-price">1.000 ₽ / 1.500 ₽</div></div>
+                <div class="price-row"><div><div class="service-name">3-х фазная мойка</div></div><div class="service-price">1.500 ₽ / 2.000 ₽</div></div>
+                <div class="price-row"><div><div class="service-name">Детейлинг уборка салона</div></div><div class="service-price">1.000 ₽ / 1.250 ₽</div></div>
+
+                <div class="price-category">Защитные покрытия</div>
+                <div class="price-row"><div><div class="service-name">Антидождь</div></div><div class="service-price">5.000 ₽ / 6.000 ₽</div></div>
+                <div class="price-row"><div><div class="service-name">Воск</div></div><div class="service-price">3.000 ₽ / 4.000 ₽</div></div>
+                <div class="price-row"><div><div class="service-name">Керамика</div></div><div class="service-price">8.000 ₽ / 10.000 ₽</div></div>
+
+                <div class="price-category">Химчистка</div>
+                <div class="price-row"><div><div class="service-name">Экспресс химчистка без разбора</div></div><div class="service-price">5.000 ₽ / 7.000 ₽</div></div>
+                <div class="price-row"><div><div class="service-name">Химчистка с частичным разбором</div></div><div class="service-price">10.000 ₽ / 14.000 ₽</div></div>
+                <div class="price-row"><div><div class="service-name">Химчистка с полным разбором</div></div><div class="service-price">21.000 ₽ / 25.000 ₽</div></div>
+
+                <div class="price-category">Ремонт и прочее</div>
+                <div class="price-row"><div><div class="service-name">Ремонт сколов</div><div class="service-desc">100 ₽ за каждый скол</div></div><div class="service-price">100 ₽ / шт</div></div>
+                <div class="price-row"><div><div class="service-name">Ремонт царапин (1 см)</div></div><div class="service-price">200 ₽</div></div>
+                <div class="price-row"><div><div class="service-name">Мойка подкапотного пространства (экспресс)</div></div><div class="service-price">3.000 ₽</div></div>
+                <div class="price-row"><div><div class="service-name">Мойка подкапотного пространства (с разбором)</div></div><div class="service-price">5.000 ₽</div></div>
+                <div class="price-row"><div><div class="service-name">Айрон, битум (мойка кузова)</div></div><div class="service-price">4.000 ₽ / 4.500 ₽</div></div>
+                <div class="price-row"><div><div class="service-name">Полировка фар</div></div><div class="service-price">3.000 ₽</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ОТЗЫВЫ ===== -->
+    <section id="reviews" class="page-section">
+        <div class="section-header">
+            <h2>Отзывы клиентов</h2>
+            <div class="line"></div>
+            <p>Что говорят о нас владельцы автомобилей в Симферополе</p>
+        </div>
+
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>Делал тонировку и оклейку фар на BMW X5. Результат превзошёл все ожидания — всё идеально, без пузырей и просветов. Мастера настоящие перфекционисты!</p>
+                <div class="author">
+                    <div class="author-avatar">АК</div>
+                    <div><div class="author-name">Алексей К.</div><div class="author-car">BMW X5</div></div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>Обращался за химчисткой после перевозки собаки. Запах полностью ушёл, салон как новый. Отдельное спасибо за бережное обращение с кожаным салоном.</p>
+                <div class="author">
+                    <div class="author-avatar">МР</div>
+                    <div><div class="author-name">Марина Р.</div><div class="author-car">Mercedes E-Class</div></div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>Оклеивали антигравийной плёнкой переднюю часть Porsche. Работа выполнена идеально — швы невидимы. Через полгода всё держится отлично.</p>
+                <div class="author">
+                    <div class="author-avatar">ДС</div>
+                    <div><div class="author-name">Дмитрий С.</div><div class="author-car">Porsche 911</div></div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>Комплексная мойка и керамика. Внимание к деталям поражает — очистили даже самые труднодоступные места. Теперь только в AURA DETAILING!</p>
+                <div class="author">
+                    <div class="author-avatar">ИВ</div>
+                    <div><div class="author-name">Игорь В.</div><div class="author-car">Toyota Land Cruiser</div></div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>Пригоняла машину после зимы — полный ужас. Получила назад буквально новый автомобиль. Полировка, керамика, химчистка. Спасибо команде Ауры!</p>
+                <div class="author">
+                    <div class="author-avatar">ЕП</div>
+                    <div><div class="author-name">Елена П.</div><div class="author-car">Audi Q7</div></div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>Очень крутая студия. Атмосфера, подход, результат — всё на высшем уровне. Делали восстановление фар и защитную плёнку. Всё чётко, в срок.</p>
+                <div class="author">
+                    <div class="author-avatar">СК</div>
+                    <div><div class="author-name">Сергей К.</div><div class="author-car">Volvo XC90</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ===== МОДАЛЬНЫЕ ОКНА УСЛУГ ===== -->
+    <div class="modal-overlay" id="modal-tonirovka">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80&sat=-100" alt="Тонировка">
+            <div class="modal-body">
+                <h3>Тонировка стёкол</h3>
+                <p>Профессиональная тонировка автомобильных стёкол с использованием высококачественных плёнок премиум-класса. Мы предлагаем несколько вариантов тонировки для любых потребностей:</p>
+                <ul>
+                    <li><strong>Тонировка любой процент</strong> — классическая тонировка с выбором степени затемнения. Седан: 7.000 ₽, Кроссовер: 8.000 ₽</li>
+                    <li><strong>Атермальная тонировка</strong> — отражает до 90% тепловых лучей, сохраняя прохладу в салоне. Седан: 9.000 ₽, Кроссовер: 10.000 ₽</li>
+                    <li><strong>Тонировка хамелеон</strong> — меняет оттенок в зависимости от угла обзора. Седан: 12.000 ₽, Кроссовер: 13.000 ₽</li>
+                </ul>
+                <p>Все плёнки сертифицированы, не мешают обзору и не выгорают. Гарантия — 5 лет.</p>
+                <div class="modal-price">от 7.000 ₽</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-okleyka">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&q=80&sat=-100" alt="Оклейка">
+            <div class="modal-body">
+                <h3>Оклейка защитной плёнкой</h3>
+                <p>Защита лакокрасочного покрытия от сколов, царапин, химических реагентов и УФ-лучей. Используем полиуретановые плёнки премиум-класса.</p>
+                <ul>
+                    <li><strong>Оклейка фар</strong> — защита от сколов и пожелтения. от 5.000 ₽</li>
+                    <li><strong>Оклейка зон риска</strong> — капот, крылья, бампер, зеркала. 50.000 — 70.000 ₽</li>
+                    <li><strong>Оклейка кузова (глянец)</strong> — полная защита прозрачной плёнкой. 175.000 — 190.000 ₽</li>
+                    <li><strong>Оклейка кузова (мат/цвет)</strong> — полная смена внешнего вида. 190.000 — 210.000 ₽</li>
+                </ul>
+                <p>Плёнка самовосстанавливается при нагревании и сохраняет вид кузова на долгие годы.</p>
+                <div class="modal-price">от 5.000 ₽</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-moyka">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <img src="https://images.unsplash.com/photo-1552930294-6b595f4c2974?w=800&q=80&sat=-100" alt="Мойка">
+            <div class="modal-body">
+                <h3>Детейлинг-мойка</h3>
+                <p>Комплексная мойка автомобиля с глубокой очисткой всех элементов кузова, дисков, арок и подкапотного пространства.</p>
+                <ul>
+                    <li><strong>2-х фазная мойка</strong> — бесконтактная + ручная мойка. Седан: 1.000 ₽, Кроссовер: 1.500 ₽</li>
+                    <li><strong>3-х фазная мойка</strong> — с нанесением защитного покрытия. Седан: 1.500 ₽, Кроссовер: 2.000 ₽</li>
+                    <li><strong>Детейлинг уборка салона</strong> — пылесос, протирка, стёкла. Седан: 1.000 ₽, Кроссовер: 1.250 ₽</li>
+                    <li><strong>Мойка подкапотного пространства</strong> — экспресс 3.000 ₽, с разбором 5.000 ₽</li>
+                </ul>
+                <p>Моющие средства безопасны для всех типов ЛКП.</p>
+                <div class="modal-price">от 1.000 ₽</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-zashita">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&q=80&sat=-100" alt="Защитные покрытия">
+            <div class="modal-body">
+                <h3>Защитные покрытия кузова</h3>
+                <p>Нанесение защитных составов для сохранения блеска ЛКП и защиты от внешних воздействий.</p>
+                <ul>
+                    <li><strong>Антидождь</strong> — гидрофобное покрытие стёкол. Седан: 5.000 ₽, Кроссовер: 6.000 ₽</li>
+                    <li><strong>Воск</strong> — глубокий блеск и защита от загрязнений. Седан: 3.000 ₽, Кроссовер: 4.000 ₽</li>
+                    <li><strong>Керамика</strong> — долгосрочная защита с гидрофобным эффектом. Седан: 8.000 ₽, Кроссовер: 10.000 ₽</li>
+                </ul>
+                <p>Все покрытия наносятся в идеально подготовленных условиях.</p>
+                <div class="modal-price">от 3.000 ₽</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-himchistka">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=800&q=80&sat=-100" alt="Химчистка">
+            <div class="modal-body">
+                <h3>Химчистка салона</h3>
+                <p>Глубокая очистка всех поверхностей салона с профессиональным оборудованием и безопасной химией.</p>
+                <ul>
+                    <li><strong>Экспресс химчистка без разбора</strong> — быстрая очистка видимых поверхностей. Седан: 5.000 ₽, Кроссовер: 7.000 ₽</li>
+                    <li><strong>Химчистка с частичным разбором</strong> — снимаются сиденья и обивка. Седан: 10.000 ₽, Кроссовер: 14.000 ₽</li>
+                    <li><strong>Химчистка с полным разбором</strong> — полная разборка салона. Седан: 21.000 ₽, Кроссовер: 25.000 ₽</li>
+                </ul>
+                <p>Удаляем пятна, запахи, следы от животных. Салон пахнет свежестью и выглядит как новый.</p>
+                <div class="modal-price">от 5.000 ₽</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-remont">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80&sat=-100" alt="Ремонт ЛКП">
+            <div class="modal-body">
+                <h3>Ремонт ЛКП и локальные работы</h3>
+                <p>Локальный ремонт повреждений лакокрасочного покрытия без перекрашивания всей детали.</p>
+                <ul>
+                    <li><strong>Ремонт сколов</strong> — точечная подкраска. 100 ₽ за каждый скол</li>
+                    <li><strong>Ремонт царапин</strong> — удаление мелких царапин. 200 ₽ за 1 см</li>
+                    <li><strong>Полировка фар</strong> — восстановление прозрачности. 3.000 ₽</li>
+                    <li><strong>Удаление битума и айрона</strong> — очистка кузова. Седан: 4.000 ₽, Кроссовер: 4.500 ₽</li>
+                </ul>
+                <p>Подбор краски по каталогу производителя, идеальное совпадение цвета. Гарантия — 1 год.</p>
+                <div class="modal-price">от 100 ₽</div>
+            </div>
+        </div>
+    </div>
+    <!-- ФУТЕР -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">AURA DETAILING</div>
+            <div class="footer-info">
+                <div><strong>Адрес</strong>Симферополь</div>
+                <div><strong>Телефон</strong><a href="tel:+79785639657">+7 (978) 563-96-57</a></div>
+                <div><strong>Режим работы</strong>Ежедневно 10:00 — 21:00</div>
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/aura_detail82?igsi=NDhoajN4YTBsbWE4" target="_blank" title="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                </a>
+                <a href="https://t.me/aura_detail82" target="_blank" title="Telegram">
+                    <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                </a>
+                <a href="tel:+79785639657" title="Позвонить">
+                    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </a>
+            </div>
+            <div class="copyright">© 2026 AURA DETAILING. Все права защищены.</div>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.querySelector('[data-page="' + pageId + '"]').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                showPage(this.getAttribute('data-page'));
+            });
+        });
+        function openModal(id) {
+            document.getElementById('modal-' + id).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+            document.body.style.overflow = '';
+        }
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
+            });
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+
+</body>
+</html>
